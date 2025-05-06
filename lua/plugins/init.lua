@@ -43,6 +43,9 @@ return {
     },
     opts = {
       handlers = {},
+      ensure_installed = {
+        "codelldb",
+      },
     },
   },
   {
