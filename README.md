@@ -32,7 +32,9 @@ rm -rf ~/.local/share/nvim
 
 And install this config: 
 
-`git clone https://github.com/gohy907/nvim ~/.config/nvim && nvim`
+```bash
+git clone https://github.com/gohy907/nvim ~/.config/nvim && nvim 
+```
 
 After lazy.nvim installs all plugins, wait for treesitter to finish installation of parsers and use `:MasonInstallAll` command
 
