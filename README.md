@@ -1,4 +1,4 @@
-This is my config for Neovim v0.11.1 powered by NvChad v2.5
+This is my config for [Neovim v0.11.1](https://github.com/neovim/neovim) powered by [NvChad v2.5](https://github.com/NvChad/NvChad)
 
 # Features
 - All features of latest NvChad
@@ -14,13 +14,21 @@ This is my config for Neovim v0.11.1 powered by NvChad v2.5
     - **All of these mappings can be easily changed to your taste in "dap" section of mappings.lua** 
 - Automatic installation of neccesary LSP servers, DAPs, formatters and linters via mason.nvim
 
+# Defaults
+- NvDash opens at start 
+    - You can disable that by editing [chadrc.lua](./lua/chadrc.lua)
+- Comments are in italic 
+    - You can change that by editing [chadrc.lua](./lua/chadrc.lua)
+
 # Installation
 ## Linux
 Delete your previous Neovim configs:
 
-`rm -rf ~/.config/nvim`
-`rm -rf ~/.local/state/nvim`
-`rm -rf ~/.local/share/nvim`
+```bash
+rm -rf ~/.config/nvim
+rm -rf ~/.local/state/nvim
+rm -rf ~/.local/share/nvim
+```
 
 And install this config: 
 
@@ -30,8 +38,12 @@ After lazy.nvim installs all plugins, wait for treesitter to finish installation
 
 After mason.nvim finishes with that, reopen Neovim and you are ready to go!
 
-# Defaults
-- NvDash opens at start 
-    - You can disable that by editing chadrc.lua
-- Comments are in italic 
-    - You can change that by editing chadrc.lua
+# Uninstallation
+## Linux 
+Delete this config with these commands:
+
+```bash
+rm -rf ~/.config/nvim
+rm -rf ~/.local/state/nvim
+rm -rf ~/.local/share/nvim
+```
