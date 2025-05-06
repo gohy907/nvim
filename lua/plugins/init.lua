@@ -14,6 +14,11 @@ return {
   },
   {
     "williamboman/mason.nvim",
+    ensure_installed = {
+      "clangd",
+      "clang-format",
+      "codelldb",
+    },
   },
   {
     "rcarriga/nvim-dap-ui",
@@ -47,7 +52,6 @@ return {
         "clangd",
         "clang-format",
         "codelldb",
-        "air",
       },
     },
   },
