@@ -1,6 +1,6 @@
 require("nvchad.configs.lspconfig").defaults()
 
-local servers = { "clangd" }
+local servers = { "clang-format" }
 vim.lsp.enable(servers)
 
 local base = require "nvchad.configs.lspconfig"
