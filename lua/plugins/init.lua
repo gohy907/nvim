@@ -14,6 +14,15 @@ return {
   },
   {
     "williamboman/mason.nvim",
+    opts = {
+      ensure_installed = {
+        "clangd",
+        "clang-format",
+        "omnisharp",
+        "csharpier",
+        "netcoredbg",
+      },
+    },
   },
   {
     "rcarriga/nvim-dap-ui",
@@ -43,9 +52,6 @@ return {
     },
     opts = {
       handlers = {},
-      ensure_installed = {
-        "codelldb",
-      },
     },
   },
   {

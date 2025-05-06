@@ -1,6 +1,6 @@
 require("nvchad.configs.lspconfig").defaults()
 
-local servers = { "clang-format" }
+local servers = { "clang-format", "omnisharp" }
 vim.lsp.enable(servers)
 
 local base = require "nvchad.configs.lspconfig"
@@ -16,4 +16,10 @@ lspconfig.clangd.setup {
   end,
   capabilities = capabilities,
 }
+
+lspconfig.omnisharp.setup({
+  cmd = { "omnisharp" },
+  filetypes = { "cs", "vb" },
+  root_dir = lspconfig.util.root_pattern("*.sln", "*.csproj", ".git"),
+})
 -- read :h vim.lsp.config for changing options of lsp servers
