@@ -2,6 +2,7 @@ local options = {
   ensure_installed = {
     "bash",
     "c_sharp",
+    "cpp",
     -- "c",
     -- "cmake",
     -- "cpp",
