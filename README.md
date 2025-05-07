@@ -2,8 +2,10 @@ This is my config for [Neovim v0.11.1](https://github.com/neovim/neovim) powered
 
 # Features
 - All features of latest NvChad
-- clang formatting of .cpp files on save
-- Debugger powered by codelldb
+- .cpp and .cs files autocompletion
+- .cpp and .cs files syntax highlighting
+- .cpp and .cs files autoformatting on save
+- .cpp and .cs debuggers:
     - `<Space>db` toggles breakpoint on line
     - `<F5>` starts debugger
     - `<F5>t` stops debugger
@@ -19,6 +21,8 @@ This is my config for [Neovim v0.11.1](https://github.com/neovim/neovim) powered
     - You can disable that by editing [chadrc.lua](./lua/chadrc.lua)
 - Comments are in italic 
     - You can change that by editing [chadrc.lua](./lua/chadrc.lua)
+- "oxocarbon" theme
+    - You can change that via NvChad, press `<leader>th` to change the theme to your liking *(`<leader>` stands for Space key)* 
 
 # Installation
 ## Linux
@@ -36,7 +40,11 @@ And install this config:
 git clone https://github.com/gohy907/nvim ~/.config/nvim && nvim 
 ```
 
-After lazy.nvim installs all plugins, wait for treesitter to finish installation of parsers and use `:MasonInstallAll` command
+After lazy.nvim installs all plugins, wait for treesitter to install all plugins and mason.nvim to install all LSPs
+You should see `[mason-lspconfig.nvim] clangd was successfully installed` in command line when it's all done
+
+To install .cpp debugger run `:MasonInstall codelldb` and wait for mason.nvim to install it
+To install .cs debugger run `:MasonInstall netcoredbg` and wait for mason.nvim to install it
 
 After mason.nvim finishes with that, reopen Neovim and you are ready to go!
 
