@@ -6,7 +6,7 @@
 local M = {}
 
 M.base46 = {
-  theme = "onedark",
+  theme = "oxocarbon",
 
   -- If you don't want have comments to be italic, comment this part
   --
