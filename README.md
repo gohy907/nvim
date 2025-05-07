@@ -2,8 +2,8 @@ This is my config for [Neovim v0.11.1](https://github.com/neovim/neovim) powered
 
 # Features
 - All features of latest NvChad
-- .cpp and .cs files autocompletion, autoformatting and syntax highlighting
-- .cpp and .cs debuggers:
+- C++ and C# files autocompletion, autoformatting and syntax highlighting
+- C++ and C# debuggers:
     - `<leader>db` toggles breakpoint on line
     - `<F5>` starts debugger
     - `<F5>t` stops debugger
@@ -11,8 +11,8 @@ This is my config for [Neovim v0.11.1](https://github.com/neovim/neovim) powered
     - `<F6>` steps into the code 
     - `<F7>` steps over the code 
     - `<F8>` steps out of the code
-    - **All of these mappings can be easily changed to your taste in "dap" section of mappings.lua** 
-- Automatic installation of neccesary LSP servers, formatters, parsers and linters via mason.nvim
+    - **All of these mappings can be easily changed to your taste in "dap" section of [mappings.lua](./lua/mappings.lua)** 
+- Automatic installation of neccesary LSP servers, formatters, parsers and linters via `mason.nvim`
 
 # Defaults
 - NvDash opens at start 
@@ -22,10 +22,9 @@ This is my config for [Neovim v0.11.1](https://github.com/neovim/neovim) powered
 - "oxocarbon" theme
     - You can change that via NvChad, press `<leader>th` to change the theme to your liking 
 
-# Installation
-## Linux
-### Ubuntu
-#### Pre-requisites
+
+# Pre-requisites
+## Ubuntu 
 
 > Apparently, `curl` command installed via `snap` may have some issues with `nvim-treesitter` and it may not get things installed, so I would recommend to reinstall it via `apt`
 >
@@ -63,7 +62,8 @@ You would need to have `dotnet-sdk` installed to install `netcoredbg`
 sudo apt install -y dotnet-sdk-8.0
 ```
 
-####
+# Installation
+## Ubuntu
 
 Delete your previous Neovim configs:
 
@@ -90,7 +90,8 @@ To install C# debugger run `:MasonInstall netcoredbg` and wait for `mason.nvim` 
 After `mason.nvim` finishes with that, reopen Neovim and you are ready to go!
 
 # Uninstallation
-## Linux 
+## Ubuntu 
+
 Delete this config with these commands:
 
 ```bash
