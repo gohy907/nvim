@@ -12,13 +12,11 @@ lspconfig.servers = {
   -- "gopls",
   -- "hls",
   -- "ols",
-  -- "pyright",
 }
 
 -- list of servers configured with default config.
 local default_servers = {
   -- "ols",
-  -- "pyright",
 }
 
 -- lsps with default config
@@ -36,11 +34,21 @@ lspconfig.omnisharp.setup {
   root_dir = lspconfig.util.root_pattern("*.sln", "*.csproj", ".git"),
 }
 
+-- lspconfig.clangd.setup {
+--   on_attach = function(client, bufnr)
+--     client.server_capabilities.signatureHelpProvider = false
+--     on_attach(client, bufnr)
+--   end,
+--   capabilities = capabilities,
+-- }
+
 lspconfig.clangd.setup {
   on_attach = function(client, bufnr)
-    client.server_capabilities.signatureHelpProvider = false
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
     on_attach(client, bufnr)
   end,
+  on_init = on_init,
   capabilities = capabilities,
 }
 
