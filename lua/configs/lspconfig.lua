@@ -9,7 +9,7 @@ lspconfig.servers = {
   "lua_ls",
   "omnisharp",
   "clangd",
-  -- "gopls",
+  "texlab",
   -- "hls",
   -- "ols",
 }
@@ -34,14 +34,6 @@ lspconfig.omnisharp.setup {
   root_dir = lspconfig.util.root_pattern("*.sln", "*.csproj", ".git"),
 }
 
--- lspconfig.clangd.setup {
---   on_attach = function(client, bufnr)
---     client.server_capabilities.signatureHelpProvider = false
---     on_attach(client, bufnr)
---   end,
---   capabilities = capabilities,
--- }
-
 lspconfig.clangd.setup {
   on_attach = function(client, bufnr)
     client.server_capabilities.documentFormattingProvider = false
@@ -52,39 +44,62 @@ lspconfig.clangd.setup {
   capabilities = capabilities,
 }
 
--- lspconfig.gopls.setup({
---     on_attach = function(client, bufnr)
---         client.server_capabilities.documentFormattingProvider = false
---         client.server_capabilities.documentRangeFormattingProvider = false
---         on_attach(client, bufnr)
---     end,
---     on_init = on_init,
---     capabilities = capabilities,
---     cmd = { "gopls" },
---     filetypes = { "go", "gomod", "gotmpl", "gowork" },
---     root_dir = lspconfig.util.root_pattern("go.work", "go.mod", ".git"),
---     settings = {
---         gopls = {
---             analyses = {
---                 unusedparams = true,
---             },
---             completeUnimported = true,
---             usePlaceholders = true,
---             staticcheck = true,
---         },
---     },
--- })
+local exe = "zathura"
+local rgs = { "--synctex-forward", "%l:1:%f", "%p" }
 
--- lspconfig.hls.setup({
---     on_attach = function(client, bufnr)
---         client.server_capabilities.documentFormattingProvider = false
---         client.server_capabilities.documentRangeFormattingProvider = false
---         on_attach(client, bufnr)
---     end,
---
---     on_init = on_init,
---     capabilities = capabilities,
--- })
+lspconfig.texlab.setup {
+  capabilities = {
+    textDocument = {
+      completion = {
+        completionItem = {
+          documentationFormat = { "plaintext" },
+          snippetSupport = true,
+        },
+      },
+    },
+  },
+  settings = {
+    texlab = {
+      experimental = {
+        verbatimEnvironments = { "minted", "lstlisting" },
+        mathEnvironments = { "cases", "equation", "equation*", "align", "align*" },
+        enumEnvironments = { "enumerate", "itemize", "description" },
+        citationCommands = { "textcite", "cite", "parencite", "supercite", "autocite" },
+      },
+      build = {
+        auxDirectory = "build",
+        logDirectory = "build",
+        pdfDirectory = "build",
+        onSave = true,
+        args = {
+          "-pdf",
+          "-lualatex",
+          "-interaction=nonstopmode",
+          "-aux-directory=build",
+          "-output-directory=build",
+          "-synctex=1",
+          "%f",
+        },
+      },
+      forwardSearch = {
+        executable = exe,
+        args = rgs,
+      },
+      chktex = {
+        onOpenAndSave = true,
+        onEdit = true,
+      },
+      diagnosticsDelay = 200,
+      latexFormatter = "latexindent",
+      latexindent = {
+        ["local"] = nil, -- local is a reserved keyword
+        modifyLineBreaks = true,
+      },
+      -- bibtexFormatter = 'texlab',
+      formatterLineLength = 120,
+    },
+  },
+}
 
 lspconfig.lua_ls.setup {
   on_attach = on_attach,
