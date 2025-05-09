@@ -35,7 +35,10 @@ This is my config for [Neovim v0.11.1](https://github.com/neovim/neovim) powered
 
 If you are completely new to Neovim and don't have it installed, don't worry, I got you covered
 
-First of all, install latest Neovim:
+First of all, install some [Nerd Font](https://www.nerdfonts.com/font-downloads) that suits you as your terminal font 
+- Make sure that the font you set doesn't end with Mono to prevent small icons. For exmaple, JetbrainsMono Nerd Font Mono **is not suitable, use JetbrainsMono Nerd Font**
+
+Then install Neovim itself:
 
 ```bash
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
@@ -79,9 +82,7 @@ And install this config:
 git clone https://github.com/gohy907/nvim ~/.config/nvim && nvim 
 ```
 
-Wait for `lazy.nvim`, `nvim-treesitter` and `mason.nvim` to install all the neccesary tools
-
-You should see `[mason-lspconfig.nvim] clangd was successfully installed` in command line when it's all done
+Wait for `lazy.nvim` to install all the plugins. After that open `mason.nvim` by `:Mason` command and wait it to end installing LSPs and formatters
 
 To install C++ debugger run `:MasonInstall codelldb` and wait for `mason.nvim` to install it
 
