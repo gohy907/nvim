@@ -59,10 +59,13 @@ You would need to have `python3-venv` installed to install `clangd`
 sudo apt install -y python3-venv
 ```
 
-You would need to have `dotnet-sdk` installed to install `netcoredbg`
+You need to have `dotnet` packages installed to have `netcoredbg` and `omnisharp` work
 
 ```bash
+sudo apt-get update
 sudo apt install -y dotnet-sdk-8.0
+sudo apt-get install -y aspnetcore-runtime-8.0
+sudo apt-get install -y dotnet-runtime-8.0
 ```
 
 # Installation
