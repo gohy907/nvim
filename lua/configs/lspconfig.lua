@@ -10,6 +10,7 @@ lspconfig.servers = {
   "lua_ls",
   "omnisharp",
   "clangd",
+  "tinymist",
   "texlab",
   -- "hls",
   -- "ols",
