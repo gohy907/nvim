@@ -7,14 +7,6 @@ local M = {}
 
 M.base46 = {
   theme = "catppuccin",
-
-  -- If you don't want have comments to be italic, comment this part
-  --
-  hl_override = {
-    Comment = { italic = true },
-    ["@comment"] = { italic = true },
-  },
-  --
 }
 
 -- If you don't want have NvDash opening on start of Neovim change this 'true' to 'false'
