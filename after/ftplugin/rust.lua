@@ -11,7 +11,7 @@ vim.keymap.set("n", "K", function()
 end, { silent = true, buffer = bufnr, desc = "Rust Hover Actions" })
 
 -- Debug
-vim.keymap.set("n", "<leader>rd", function()
+vim.keymap.set("n", "<F5>", function()
   vim.cmd.RustLsp "debuggables"
 end, { silent = true, buffer = bufnr, desc = "Rust Debuggables" })
 
