@@ -1,7 +1,6 @@
 local options = {
   formatters_by_ft = {
     lua = { "stylua" },
-    c_sharp = { "csharpier" },
     c = { "clang-format" },
     cpp = { "clang-format" },
     -- go = { "gofumpt", "goimports-reviser", "golines" },

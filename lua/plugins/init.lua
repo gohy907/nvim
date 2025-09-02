@@ -6,6 +6,12 @@ return {
       require "configs.treesitter"
     end,
   },
+  {
+    "mrcjkb/rustaceanvim",
+    version = "^6", -- Рекомендуется использовать версионные теги
+    lazy = false, -- НЕ загружать лениво, так как это filetype плагин
+    ft = { "rust" }, -- Активировать только для файлов Rust (опционально)
+  },
 
   {
     "neovim/nvim-lspconfig",
