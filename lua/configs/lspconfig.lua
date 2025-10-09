@@ -1,12 +1,10 @@
-local on_attach = require("nvchad.configs.lspconfig").on_attach
-local on_init = require("nvchad.configs.lspconfig").on_init
-local capabilities = require("nvchad.configs.lspconfig").capabilities
+local base = require "nvchad.configs.lspconfig"
+local on_attach = base.on_attach
+local on_init = base.on_init
+local capabilities = base.capabilities
 
-local lspconfig = require "lspconfig"
-local pid = vim.fn.getpid()
-
--- list of all servers configured.
-lspconfig.servers = {
+-- list of servers configured with default config.
+local servers = {
   "lua_ls",
   "clangd",
   "tinymist",
@@ -15,21 +13,19 @@ lspconfig.servers = {
   -- "ols",
 }
 
--- list of servers configured with default config.
-local default_servers = {
-  -- "ols",
-}
+local pid = vim.fn.getpid()
 
 -- lsps with default config
-for _, lsp in ipairs(default_servers) do
-  lspconfig[lsp].setup {
+for _, lsp in ipairs(servers) do
+  vim.lsp.config(lsp, {
     on_attach = on_attach,
     on_init = on_init,
     capabilities = capabilities,
-  }
+  })
+  vim.lsp.enable(lsp)
 end
 
-lspconfig.omnisharp.setup {
+vim.lsp.config("omnisharp", {
   cmd = {
     "/home/gohy/.local/share/nvim/mason/bin/OmniSharp", -- CHANGE PATH TO YOURS
     "--languageserver",
@@ -39,9 +35,10 @@ lspconfig.omnisharp.setup {
   capabilities = capabilities,
   filetypes = { "cs", "vb" },
   root_dir = lspconfig.util.root_pattern("*.sln", "*.csproj", ".git"),
-}
+})
+vim.lsp.enable("omnisharp")
 
-lspconfig.clangd.setup {
+vim.lsp.config("clangd", {
   on_attach = function(client, bufnr)
     client.server_capabilities.documentFormattingProvider = false
     client.server_capabilities.documentRangeFormattingProvider = false
@@ -49,12 +46,13 @@ lspconfig.clangd.setup {
   end,
   on_init = on_init,
   capabilities = capabilities,
-}
+})
+vim.lsp.enable("clangd")
 
 local exe = "zathura"
 local rgs = { "--synctex-forward", "%l:1:%f", "%p" }
 
-lspconfig.texlab.setup {
+vim.lsp.config("texlab", {
   capabilities = {
     textDocument = {
       completion = {
@@ -106,9 +104,10 @@ lspconfig.texlab.setup {
       formatterLineLength = 120,
     },
   },
-}
+})
+vim.lsp.enable("texlab")
 
-lspconfig.lua_ls.setup {
+vim.lsp.config("lua_ls", {
   on_attach = on_attach,
   on_init = on_init,
   capabilities = capabilities,
@@ -132,4 +131,5 @@ lspconfig.lua_ls.setup {
       },
     },
   },
-}
+})
+vim.lsp.enable("lua_ls")
