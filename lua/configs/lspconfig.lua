@@ -4,14 +4,7 @@ local on_init = base.on_init
 local capabilities = base.capabilities
 
 -- list of servers configured with default config.
-local servers = {
-  "lua_ls",
-  "clangd",
-  "tinymist",
-  "texlab",
-  -- "hls",
-  -- "ols",
-}
+local servers = require "configs.lsp-servers"
 
 local pid = vim.fn.getpid()
 
@@ -34,9 +27,12 @@ vim.lsp.config("omnisharp", {
   },
   capabilities = capabilities,
   filetypes = { "cs", "vb" },
-  root_dir = lspconfig.util.root_pattern("*.sln", "*.csproj", ".git"),
+  root_dir = function(fname)
+    return util.root_pattern("*.sln", "*.csproj", ".git")(fname)
+      or util.path.dirname(fname)
+  end,
 })
-vim.lsp.enable("omnisharp")
+vim.lsp.enable "omnisharp"
 
 vim.lsp.config("clangd", {
   on_attach = function(client, bufnr)
@@ -47,7 +43,7 @@ vim.lsp.config("clangd", {
   on_init = on_init,
   capabilities = capabilities,
 })
-vim.lsp.enable("clangd")
+vim.lsp.enable "clangd"
 
 local exe = "zathura"
 local rgs = { "--synctex-forward", "%l:1:%f", "%p" }
@@ -67,9 +63,21 @@ vim.lsp.config("texlab", {
     texlab = {
       experimental = {
         verbatimEnvironments = { "minted", "lstlisting" },
-        mathEnvironments = { "cases", "equation", "equation*", "align", "align*" },
+        mathEnvironments = {
+          "cases",
+          "equation",
+          "equation*",
+          "align",
+          "align*",
+        },
         enumEnvironments = { "enumerate", "itemize", "description" },
-        citationCommands = { "textcite", "cite", "parencite", "supercite", "autocite" },
+        citationCommands = {
+          "textcite",
+          "cite",
+          "parencite",
+          "supercite",
+          "autocite",
+        },
       },
       build = {
         auxDirectory = "build",
@@ -105,7 +113,7 @@ vim.lsp.config("texlab", {
     },
   },
 })
-vim.lsp.enable("texlab")
+vim.lsp.enable "texlab"
 
 vim.lsp.config("lua_ls", {
   on_attach = on_attach,
@@ -132,4 +140,4 @@ vim.lsp.config("lua_ls", {
     },
   },
 })
-vim.lsp.enable("lua_ls")
+vim.lsp.enable "lua_ls"
