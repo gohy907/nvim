@@ -6,7 +6,7 @@
 local M = {}
 
 M.base46 = {
-  theme = "catppuccin",
+  theme = "vscode_light",
 }
 
 -- If you don't want have NvDash opening on start of Neovim change this 'true' to 'false'

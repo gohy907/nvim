@@ -8,7 +8,6 @@ local pid = vim.fn.getpid()
 -- list of all servers configured.
 lspconfig.servers = {
   "lua_ls",
-  "omnisharp",
   "clangd",
   "tinymist",
   "texlab",

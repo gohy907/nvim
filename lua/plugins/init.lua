@@ -1,16 +1,37 @@
 return {
+
+  {
+    "glacambre/firenvim",
+    build = ":call firenvim#install(0)",
+    lazy = false,
+    config = function()
+      vim.api.nvim_create_autocmd({ "BufEnter" }, {
+        pattern = "practicum.yandex.ru_*.txt",
+        command = "set filetype=python",
+      })
+      vim.g.firenvim_config = {
+        globalSettings = { alt = "all" },
+        localSettings = {
+          [".*"] = {
+            cmdline = "neovim",
+            content = "text",
+            priority = 0,
+            selector = "textarea",
+            takeover = "never",
+          },
+        },
+      }
+      if vim.g.started_by_firenvim then
+        vim.o.guifont = "JetBrainsMono Nerd Font:h12"
+      end
+    end,
+  },
   {
     "nvim-treesitter/nvim-treesitter",
     event = { "BufReadPre", "BufNewFile" },
     config = function()
       require "configs.treesitter"
     end,
-  },
-  {
-    "mrcjkb/rustaceanvim",
-    version = "^6", -- Рекомендуется использовать версионные теги
-    lazy = false, -- НЕ загружать лениво, так как это filetype плагин
-    ft = { "rust" }, -- Активировать только для файлов Rust (опционально)
   },
 
   {
