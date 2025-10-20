@@ -23,6 +23,51 @@ dap.adapters.codelldb = {
   -- detached = false,
 }
 
+dap.configurations.rust = {
+  {
+    name = "Launch file",
+    type = "codelldb",
+    request = "launch",
+    program = function()
+      return vim.fn.input(
+        "Path to executable: ",
+        vim.fn.getcwd() .. "/target/debug/" .. vim.fn.substitute(vim.fn.getcwd(), "^.*/", "", ""),
+        "file"
+      )
+    end,
+    cwd = "${workspaceFolder}",
+  },
+  {
+    type = "codelldb",
+    request = "launch",
+    name = "Launch with args",
+    program = function()
+      return vim.fn.input(
+        "Path to executable: ",
+        vim.fn.getcwd() .. "/target/debug/" .. vim.fn.substitute(vim.fn.getcwd(), "^.*/", "", ""),
+        "file"
+      )
+    end,
+    args = function()
+      local args = {}
+      vim.ui.input({ prompt = "args: " }, function(input)
+        args = vim.split(input, " ")
+      end)
+      return args
+    end,
+    cwd = "${workspaceFolder}",
+  },
+  {
+    type = "codelldb",
+    request = "attach",
+    name = "Attach to process",
+    pid = function()
+      return vim.fn.input "Input pid: "
+    end,
+    cwd = "${workspaceFolder}",
+  },
+}
+
 dap.configurations.cpp = {
   {
     name = "Launch file",
