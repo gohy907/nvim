@@ -1,9 +1,9 @@
-This is my config for [Neovim v0.11.1](https://github.com/neovim/neovim) powered by [NvChad v2.5](https://github.com/NvChad/NvChad)
+This is my config for [Neovim v0.12.X](https://github.com/neovim/neovim) powered by [NvChad v2.5](https://github.com/NvChad/NvChad)
 
 # Features
 - All features of latest NvChad
-- C++ and C# files autocompletion, autoformatting and syntax highlighting
-- C++ and C# debuggers:
+- C++ and Rust autocompletion, autoformatting, syntax highlighting and debugging
+- Debugging:
     - `<leader>db` toggles breakpoint on line
     - `<F5>` starts debugger
     - `<F5>t` stops debugger
@@ -11,16 +11,6 @@ This is my config for [Neovim v0.11.1](https://github.com/neovim/neovim) powered
     - `<F6>` steps into the code 
     - `<F7>` steps over the code 
     - `<F8>` steps out of the code
-    - **All of these mappings can be easily changed to your taste in "dap" section of [mappings.lua](./lua/mappings.lua)** 
-- Automatic installation of neccesary LSP servers, formatters, parsers and linters via `mason.nvim`
-
-# Defaults
-- NvDash opens at start 
-    - You can disable that by editing [chadrc.lua](./lua/chadrc.lua)
-- Comments are in italic 
-    - You can change that by editing [chadrc.lua](./lua/chadrc.lua)
-- "oxocarbon" theme
-    - You can change that via NvChad, press `<leader>th` to change the theme to your liking 
 
 
 # Pre-requisites
@@ -53,19 +43,12 @@ Put this line in the end of `.bashrc` file
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 ```
 
+> You still can install Neovim by `apt` but the version of it there is really outdated and something probably won't work with this config.
+
 You would need to have `python3-venv` installed to install `clangd`
 
 ```bash
 sudo apt install -y python3-venv
-```
-
-You need to have `dotnet` packages installed to have `netcoredbg` and `omnisharp` work
-
-```bash
-sudo apt-get update
-sudo apt install -y dotnet-sdk-8.0
-sudo apt-get install -y aspnetcore-runtime-8.0
-sudo apt-get install -y dotnet-runtime-8.0
 ```
 
 # Installation
@@ -89,9 +72,9 @@ Wait for `lazy.nvim` to install all the plugins. After that open `mason.nvim` by
 
 To install C++ debugger run `:MasonInstall codelldb` and wait for `mason.nvim` to install it
 
-To install C# debugger run `:MasonInstall netcoredbg` and wait for `mason.nvim` to install it
-
 After `mason.nvim` finishes with that, reopen Neovim and you are ready to go!
+
+
 
 # Uninstallation
 ## Ubuntu 
