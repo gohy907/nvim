@@ -64,3 +64,5 @@ vim.api.nvim_create_autocmd("FileType", {
     )
   end,
 })
+
+require "-100%"
